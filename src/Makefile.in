@@ -1,0 +1,11 @@
+CXX=@CXX@
+LD=@CXX@
+CXXFLAGS=@CXXFLAGS@
+
+cppixsort.out: main.o
+	$(LD) -o $@ $^
+
+.PHONY: clean
+
+clean:
+	rm -f cppixsort
