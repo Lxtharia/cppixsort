@@ -38,8 +38,16 @@
 
 # Configure files
 autom4te.cache
-configure~
-configure
-config.status
-config.log
+/configure
+/configure~
+/config.status
+/config.log
+/aclocal.m4
+/depcomp
+/install-sh
+/missing
 Makefile
+Makefile.in
+.deps
+
+src/cppixsort

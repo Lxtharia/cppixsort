@@ -4,8 +4,9 @@ AC_CONFIG_SRCDIR([src/main.cpp])
 AC_LANG([C++])
 AC_PROG_CXX
 
+AM_INIT_AUTOMAKE([foreign])
 
-AC_CONFIG_FILES([src/Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile])
 AC_OUTPUT
 
 
