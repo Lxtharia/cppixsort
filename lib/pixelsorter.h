@@ -2,24 +2,32 @@
 #include <vector>
 using std::vector;
 
-using PIXEL_VALUE_TYPE = unsigned char;
+using PIXEL_VALUE_TYPE = unsigned int;
 
 struct Pixel {
-    PIXEL_VALUE_TYPE* r;
-    PIXEL_VALUE_TYPE* g;
-    PIXEL_VALUE_TYPE* b;
+    PIXEL_VALUE_TYPE& r;
+    PIXEL_VALUE_TYPE& g;
+    PIXEL_VALUE_TYPE& b;
+};
+
+class SortingAlgorithm {
+    private:
+    public:
+        void sort_span(vector<Pixel>);
 };
 
 class Pixelsorter {
 private:
-    bool m_inverse;
+    bool inverse;
+    SortingAlgorithm algo;
 public:
-    Pixelsorter(bool inverse = false)
-        : m_inverse(inverse)
+    Pixelsorter(SortingAlgorithm algo, bool inverse = false)
+        : inverse(inverse)
+        , algo(algo)
     {}
     ~Pixelsorter() {}
 
     void sort_pixels(int w, int h, vector<Pixel>);
+    friend void SortingAlgorithm::sort_span(vector<Pixel>);
 };
 
-vector<Pixel> img_to_pixels(PIXEL_VALUE_TYPE* data, int size, int depth, int dimensions);

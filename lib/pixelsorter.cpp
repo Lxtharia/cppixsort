@@ -1,28 +1,26 @@
 #include "pixelsorter.h"
 #include <iostream>
+using std::cout, std::endl;
 
-
-void Pixelsorter::sort_pixels(int w, int h, vector<Pixel> data) {
-	std::cout << "Sorting a image with dimenstions: [" << w << "x" << h << "]" << std::endl;
+void SortingAlgorithm::sort_span(vector<Pixel> data) {
     for (Pixel p : data) {
-        auto temp = *p.r;
-        *p.r = *p.g;
-        *p.g = temp;
+        cout << "{ r: " << p.r << ", g: " << p.g << ", g: " << p.b << " }" << endl;
+        if (p.r) p.r /= 2;
+        if (p.g) p.g /= 2;
+        if (p.b) p.b /= 2;
+    }
+};
+
+void Pixelsorter::sort_pixels(int width, int height, vector<Pixel> data) {
+	std::cout << "Sorting a image with dimenstions: [" << width << "x" << height << "]" << std::endl;
+    for (int x = 0; x < width; x++) {
+        vector<Pixel> span {}; 
+        for (int y = 0; y < height; y++) {
+            int index = y * width + x;
+            span.push_back(data[index]);
+        }
+        std::cout << "Sorting span of length: "  << span.size() << std::endl;
+        this->algo.sort_span(span);
     }
 }
 
-vector<Pixel> img_to_pixels(PIXEL_VALUE_TYPE* data, int size, int depth, int spectrum) {
-    vector<Pixel> vec {};
-    if (data == nullptr) return vec;
-    // Data is stored like this: R1R2R3R4...G1G2G3G4...B1B2B3B4...
-    // Size is w*h*dep*spec
-    int offset = size/(depth*spectrum);
-    for (int i = 0; i < offset; i++) {
-        vec.push_back(Pixel{
-                &data[i],         //r
-                &data[offset+i],  //g
-                &data[2*offset+i] //b
-            });
-    }
-    return vec;
-}
