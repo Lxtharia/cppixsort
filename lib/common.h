@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include <iostream>
 
 using PIXEL_VALUE_TYPE = unsigned int;
@@ -36,3 +37,6 @@ public:
     }
 
 };
+
+using Span = std::vector<Pixel>;
+

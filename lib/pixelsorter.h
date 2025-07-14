@@ -18,6 +18,6 @@ public:
     {}
     ~Pixelsorter() {}
 
-    void sort_pixels(int w, int h, std::vector<Pixel>);
+    void sort_pixels(int w, int h, Span);
 };
 

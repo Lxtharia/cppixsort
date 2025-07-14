@@ -8,7 +8,7 @@ class PathCreator {
         enum Direction {
             LEFT, UP, RIGHT, DOWN
         };
-        virtual vector<vector<Pixel>> create_spans(int width, int height, vector<Pixel>& pixels) const = 0;
+        virtual vector<Span> create_spans(int width, int height, Span& pixels) const = 0;
 };
 
 class LinePath : public PathCreator {
@@ -17,5 +17,5 @@ public:
     LinePath(Direction dir): PathCreator() {
         this->direction = dir;
     }
-    virtual vector<vector<Pixel>>  create_spans(int width, int height, vector<Pixel>& pixels) const override;
+    virtual vector<Span>  create_spans(int width, int height, Span& pixels) const override;
 };

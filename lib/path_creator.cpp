@@ -2,8 +2,8 @@
 #include "path_creator.h"
 
 
-vector<vector<Pixel>> LinePath::create_spans(int width, int height, vector<Pixel>& pixels) const {
-    vector<vector<Pixel>> spans {};
+vector<Span> LinePath::create_spans(int width, int height, Span& pixels) const {
+    vector<Span> spans {};
 
     // For every column, sort the row
     int primary = width;
@@ -23,7 +23,7 @@ vector<vector<Pixel>> LinePath::create_spans(int width, int height, vector<Pixel
     }
 
     for (int a = 0; a < secondary; a++) {
-        vector<Pixel> span {};
+        Span span {};
         for (int b = reverse?(primary-1):0
             ;reverse?(b > 0):(b < primary)
             ;b += reverse?-1:1

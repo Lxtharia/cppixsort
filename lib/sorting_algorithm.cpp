@@ -3,7 +3,7 @@
 using namespace std;
 
 // Why is this possible? :sob:
-void SortingAlgorithm::sort_span(vector<Pixel>& data) const {
+void SortingAlgorithm::sort_span(Span& data) const {
     for (Pixel& p : data) {
         cout << "{ r: " << p.r << ", g: " << p.g << ", g: " << p.b << " }" << endl;
         if (p.r) p.r /= 2;
@@ -12,7 +12,7 @@ void SortingAlgorithm::sort_span(vector<Pixel>& data) const {
     }
 };
 
-void BubbleSort::sort_span(std::vector<Pixel>& pixels) const {
+void BubbleSort::sort_span(Span& pixels) const {
     // If we don't implement a sort_span, we get a "undefined reference to 'vtable for BubbleSort'" error
     if (pixels.size() <= 1) return;
 
