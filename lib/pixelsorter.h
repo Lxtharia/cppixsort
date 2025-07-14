@@ -2,12 +2,12 @@
 #include <vector>
 using std::vector;
 
-using PIXEL_VALUE_TYPE = unsigned int;
+using PIXEL_VALUE_TYPE = unsigned char;
 
 struct Pixel {
-    PIXEL_VALUE_TYPE r;
-    PIXEL_VALUE_TYPE g;
-    PIXEL_VALUE_TYPE b;
+    PIXEL_VALUE_TYPE* r;
+    PIXEL_VALUE_TYPE* g;
+    PIXEL_VALUE_TYPE* b;
 };
 
 class Pixelsorter {

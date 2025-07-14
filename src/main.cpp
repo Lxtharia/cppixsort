@@ -22,7 +22,6 @@ int main (int argc, char *argv[]) {
 	sorter.sort_pixels(10, 10, pixels);
 
     cout << "Saving image..." << endl;
-    CImg<PIXEL_VALUE_TYPE> sorted{pixels};
 
 	// Save it to sorted.png
     image.save_imagemagick_external("sorted.png");
