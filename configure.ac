@@ -6,7 +6,9 @@ AC_PROG_CXX
 
 AM_INIT_AUTOMAKE([foreign])
 
-AC_CONFIG_FILES([Makefile src/Makefile])
+AC_PROG_RANLIB
+
+AC_CONFIG_FILES([Makefile src/Makefile lib/Makefile])
 AC_OUTPUT
 
 

@@ -1,8 +1,8 @@
-SUBDIRS = src
+SUBDIRS = lib src
 EXTRA_DIST = README.md
 
 all: cppixsort
 
 cppixsort:
-	ln -s src/cppixsort cppixsort.out
+	ln -fs src/cppixsort.out cppixsort.out
 
