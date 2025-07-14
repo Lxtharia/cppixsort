@@ -50,5 +50,7 @@ Makefile
 Makefile.in
 .deps
 
-src/cppixsort
+# IDE files
+compile_commands.json
+.cache/
 *.vim
