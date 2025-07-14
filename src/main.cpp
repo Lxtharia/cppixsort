@@ -3,7 +3,7 @@
 #include "lib/pixelsorter.h"
 #include <CImg.h>
 
-using std::cout, std::endl;
+using namespace std;
 using cimg_library::CImg;
 
 vector<Pixel> img_to_pixels(CImg<PIXEL_VALUE_TYPE>& image);
@@ -11,10 +11,10 @@ vector<Pixel> img_to_pixels(CImg<PIXEL_VALUE_TYPE>& image);
 int main (int argc, char *argv[]) {
 	std::cout << "Hello World!" << std::endl;
 
+    BubbleSort bub {SortingAlgorithm::Criteria::BRIGHTNESS};
+
     // Creating sorter
-	Pixelsorter sorter{
-        SortingAlgorithm{}
-    };
+	Pixelsorter sorter { bub };
 
     cout << "Opening image..." << endl;
     CImg<PIXEL_VALUE_TYPE> image("res/pixeltest.png");
@@ -38,7 +38,7 @@ int main (int argc, char *argv[]) {
 }
 
 
-/*! Return the Pixels of the image as mutable vector
+/*! Return the Pixels of the image as a vector. Changing the pixel values will manipulate the image.
 */
 vector<Pixel> img_to_pixels(CImg<PIXEL_VALUE_TYPE>& image) {
     PIXEL_VALUE_TYPE* data = image.data();
