@@ -51,3 +51,4 @@ Makefile.in
 .deps
 
 src/cppixsort
+*.vim
