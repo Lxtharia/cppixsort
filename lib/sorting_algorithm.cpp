@@ -1,11 +1,10 @@
 #include <iostream>
-#include <utility>
 #include "sorting_algorithm.h"
 using namespace std;
 
 // Why is this possible? :sob:
-void SortingAlgorithm::sort_span(vector<Pixel> data) const {
-    for (Pixel p : data) {
+void SortingAlgorithm::sort_span(vector<Pixel>& data) const {
+    for (Pixel& p : data) {
         cout << "{ r: " << p.r << ", g: " << p.g << ", g: " << p.b << " }" << endl;
         if (p.r) p.r /= 2;
         if (p.g) p.g /= 2;
@@ -13,12 +12,20 @@ void SortingAlgorithm::sort_span(vector<Pixel> data) const {
     }
 };
 
-void swap_pixels(Pixel a, Pixel b) {
-}
+void BubbleSort::sort_span(std::vector<Pixel>& pixels) const {
+    // If we don't implement a sort_span, we get a "undefined reference to 'vtable for BubbleSort'" error
+    if (pixels.size() <= 1) return;
 
-// If we don't implement a sort_span, we get a "undefined reference to 'vtable for BubbleSort'" error
-void BubbleSort::sort_span(std::vector<Pixel>) const {
     if (this->criteria == this->BRIGHTNESS) {
+        int t = pixels.size();
+        for (int i = 0; i < pixels.size(); i ++) { // Swoops this many times
+            for (int j = 1; j < t; j ++) { // One swoop, where the biggest number gets swooped to the end
+                if (pixels[j-1].value > pixels[j].value) 
+                    pixels[j-1].swap(pixels[j]);
+            }
+            t--;
+        }
+
 
     } else {
         throw "Invalid Criteria";

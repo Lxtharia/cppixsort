@@ -13,7 +13,7 @@ public:
     SortingAlgorithm(Criteria criteria)
         : criteria(criteria) {}
     // No default implementation for sort_span. This makes the class abstract
-    virtual void sort_span(std::vector<Pixel>) const = 0;
+    virtual void sort_span(std::vector<Pixel>&) const = 0;
 };
 
 // BubbleSort inherits Algorithm
@@ -24,5 +24,5 @@ public:
         : SortingAlgorithm(criteria) {}  // probably equivalent to calling super() in java
     // We explicitly override sort_span.
     // Override makes the compiler warn us if we accidentally overload a function with the same name
-    virtual void sort_span(std::vector<Pixel>) const override;
+    virtual void sort_span(std::vector<Pixel>&) const override;
 };
