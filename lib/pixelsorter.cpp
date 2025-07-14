@@ -3,22 +3,19 @@
 using namespace std;
 
 void Pixelsorter::sort_pixels(int width, int height, vector<Pixel> data) {
-	std::cout << "Calculating values for quicker comparison" << std::endl;
-    for (Pixel& p : data) {
-        p.value = p.r + p.g + p.b;
-    }
+    std::cout << "Sorting image with dimenstions: [" << width << "x" << height << "]" << std::endl;
 
-	std::cout << "Sorting a image with dimenstions: [" << width << "x" << height << "]" << std::endl;
-    for (int x = 0; x < width; x++) {
-        vector<Pixel> span {}; 
+	std::cout << "Creating spans along a path" << std::endl;
+    auto spans = this->pathing.create_spans(width, height, data);
 
-        for (int y = 0; y < height; y++) {
-            int index = y * width + x;
-            span.push_back(data[index]);
+    for (vector<Pixel> span : spans) {
+        std::cout << "Calculating pixel values for quicker comparison" << std::endl;
+        for (Pixel& p : span) {
+            p.value = p.r + p.g + p.b;
         }
-
         std::cout << "Sorting span of length: "  << span.size() << std::endl;
         this->algo.sort_span(span);
     }
+
 }
 
