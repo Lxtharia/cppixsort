@@ -7,6 +7,13 @@ Another modular Pixelsorter made by me, written in C++
 - [ ] Any
 
 
+## Building from source
+- Install **Dependencies**:
+```
+# For Arch Linux
+sudo pacman -S cimg
+```
+
 # Yee Haw
 
 Yeee

@@ -2,10 +2,12 @@
 #include <vector>
 using std::vector;
 
+using PIXEL_VALUE_TYPE = unsigned int;
+
 struct Pixel {
-    int r;
-    int g;
-    int b;
+    PIXEL_VALUE_TYPE r;
+    PIXEL_VALUE_TYPE g;
+    PIXEL_VALUE_TYPE b;
 };
 
 class Pixelsorter {
@@ -17,5 +19,7 @@ public:
     {}
     ~Pixelsorter() {}
 
-    void sort(int w, int h, vector<int>);
+    void sort_pixels(int w, int h, vector<Pixel>);
 };
+
+vector<Pixel> img_to_pixels(PIXEL_VALUE_TYPE* data, int size, int depth, int dimensions);

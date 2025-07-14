@@ -1,23 +1,31 @@
 #include <iostream>
 #include <vector>
 #include "lib/pixelsorter.h"
+#include <CImg.h>
 
 using std::cout, std::endl;
+using cimg_library::CImg;
 
 int main (int argc, char *argv[]) {
 	std::cout << "Hello World!" << std::endl;
-	// Include test.png
 
-	// Sort it
-	// TODO
+    // Creating sorter
 	Pixelsorter sorter{};
 
-	std::vector<int> pixels = { 1,2,3,4 };
-	sorter.sort(10, 10, pixels);
-	Pixel p = {255, 120, 100};
-	cout << "{ r: " << p.r << ", g: " << p.g << ", g: " << p.b << " }" << endl;
+    cout << "Opening image..." << endl;
+    CImg<PIXEL_VALUE_TYPE> image("res/pixeltest.png");
 
-	// Save it to sorted-test.png
+    cout << "Extracting pixels..." << endl;
+    auto pixels = img_to_pixels(image.data(), image.size(), image.depth(), image.spectrum());
+
+    cout << "Sorting image..." << endl;
+	sorter.sort_pixels(10, 10, pixels);
+
+    cout << "Saving image..." << endl;
+    CImg<PIXEL_VALUE_TYPE> sorted{pixels};
+
+	// Save it to sorted.png
+    image.save_imagemagick_external("sorted.png");
 
 	return 0;
 }
