@@ -2,16 +2,6 @@
 #include "sorting_algorithm.h"
 using namespace std;
 
-// Why is this possible? :sob:
-void SortingAlgorithm::sort_span(Span& data) const {
-    for (Pixel& p : data) {
-        cout << "{ r: " << p.r << ", g: " << p.g << ", g: " << p.b << " }" << endl;
-        if (p.r) p.r /= 2;
-        if (p.g) p.g /= 2;
-        if (p.b) p.b /= 2;
-    }
-};
-
 void BubbleSort::sort_span(Span& pixels) const {
     // If we don't implement a sort_span, we get a "undefined reference to 'vtable for BubbleSort'" error
     if (pixels.size() <= 1) return;

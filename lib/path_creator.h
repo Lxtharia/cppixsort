@@ -3,12 +3,18 @@
 #include <vector>
 using namespace std;
 
+/*! Base class for creating paths.
+
+   The default implementation will return all the pixels as one span, starting at the top left.
+*/
 class PathCreator {
     public:
         enum Direction {
-            LEFT, UP, RIGHT, DOWN
+            RIGHT, DOWN, LEFT, UP,
         };
-        virtual vector<Span> create_spans(int width, int height, Span& pixels) const = 0;
+        virtual vector<Span> create_spans(int width, int height, Span& pixels) const {
+            return { pixels };
+        };
 };
 
 class LinePath : public PathCreator {

@@ -1,7 +1,6 @@
+#pragma once
 #include <string>
 #include "lib/pixelsorter.h"
-#include "lib/path_creator.h"
-#include "lib/sorting_algorithm.h"
 
 struct cmdline_args {
     std::string input_filename;
@@ -10,5 +9,5 @@ struct cmdline_args {
     int loglevel = 1;
 };
 
-cmdline_args parse_cmdline(int argc, char **argv);
+cmdline_args parse_arguments(int argc, char **argv);
 

@@ -6,11 +6,12 @@ static char doc[] =
     "Cppixsort -- A modular pixelsorter written in C++";
 
 static char args_doc[] =
-    "<INPUT_FILE> <OUTPUT_FILE> [OPTIONS]";
+    "<INPUT_FILE> <OUTPUT_FILE>";
 
 static argp_option options[] = {
     {"verbose", 'v', 0, 0, "Produce VERBOSE output"},
     {"quiet",   'q', 0, 0, "MAKE THE PROGRAM be quiet"},
+    {0},
 };
 
 static error_t parse_opt(int key, char *arg, struct argp_state *state) {
@@ -24,6 +25,10 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
             args->loglevel = 0;
             break;
         case ARGP_KEY_ARG:
+            if (state->arg_num != 2)
+                argp_usage(state);
+            args->input_filename = arg;
+            break;
             break;
         default:
             return ARGP_ERR_UNKNOWN;

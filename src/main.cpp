@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "lib/path_creator.h"
+#include "cmdline.h"
 #include "lib/pixelsorter.h"
 #include <CImg.h>
 
@@ -12,11 +12,8 @@ vector<Pixel> img_to_pixels(CImg<PIXEL_VALUE_TYPE>& image);
 int main (int argc, char *argv[]) {
 	std::cout << "Hello World!" << std::endl;
 
-    BubbleSort bubble_sort {SortingAlgorithm::Criteria::BRIGHTNESS};
-    LinePath line_path {LinePath::Direction::LEFT};
-
     // Creating sorter
-	Pixelsorter sorter { line_path, bubble_sort };
+    cmdline_args args = parse_arguments(argc, argv);
 
     cout << "Opening image..." << endl;
     CImg<PIXEL_VALUE_TYPE> image("res/pixeltest.png");
@@ -29,7 +26,7 @@ int main (int argc, char *argv[]) {
     // }
 
     cout << "Sorting image..." << endl;
-	sorter.sort_pixels(image.width(), image.height(), pixels);
+	args.pixelsorter.sort_pixels(image.width(), image.height(), pixels);
 
     cout << "Saving image..." << endl;
 

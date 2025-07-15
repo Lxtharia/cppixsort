@@ -1,3 +1,4 @@
+#pragma once
 #include <bits/std_thread.h>
 #include <vector>
 #include "common.h"
@@ -8,9 +9,15 @@
 class Pixelsorter {
 private:
     bool inverse;
-    SortingAlgorithm& algo;
-    PathCreator& pathing;
+    SortingAlgorithm algo;
+    PathCreator pathing;
 public:
+    Pixelsorter()
+        :inverse(false)
+        ,algo(SortingAlgorithm(SortingAlgorithm::Criteria::BRIGHTNESS))
+        ,pathing(PathCreator())
+    {
+    }
     Pixelsorter(PathCreator& pathing, SortingAlgorithm& algo, bool inverse = false)
         : inverse(inverse)
         , pathing(pathing)

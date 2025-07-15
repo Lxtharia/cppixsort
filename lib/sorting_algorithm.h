@@ -2,6 +2,10 @@
 #include "common.h"
 #include <vector>
 
+/*! Base class for the algorithm that is used to sort a span.
+
+   The default implementation will leave the spans unaltered.
+*/
 class SortingAlgorithm {
 public:
     enum Criteria {
@@ -12,8 +16,8 @@ protected:
 public:
     SortingAlgorithm(Criteria criteria)
         : criteria(criteria) {}
-    // No default implementation for sort_span. This makes the class abstract
-    virtual void sort_span(Span&) const = 0;
+    // Default implementation does nothing
+    virtual void sort_span(Span&) const {};
 };
 
 // BubbleSort inherits Algorithm
