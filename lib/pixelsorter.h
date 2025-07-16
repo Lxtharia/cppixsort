@@ -8,23 +8,23 @@
 
 class Pixelsorter {
 private:
-    bool inverse;
-    SortingAlgorithm algo;
-    PathCreator pathing;
+	bool inverse;
+	SortingAlgorithm algo;
+	PathCreator pathing;
 public:
-    Pixelsorter()
-        :inverse(false)
-        ,algo(SortingAlgorithm(SortingAlgorithm::Criteria::BRIGHTNESS))
-        ,pathing(PathCreator())
-    {
-    }
-    Pixelsorter(PathCreator& pathing, SortingAlgorithm& algo, bool inverse = false)
-        : inverse(inverse)
-        , pathing(pathing)
-        , algo(algo)
-    {}
-    ~Pixelsorter() {}
+	Pixelsorter()
+		:inverse(false)
+		,algo(SortingAlgorithm(SortingAlgorithm::Criteria::BRIGHTNESS))
+		,pathing(PathCreator())
+	{
+	}
+	Pixelsorter(PathCreator& pathing, SortingAlgorithm& algo, bool inverse = false)
+		: inverse(inverse)
+		, pathing(pathing)
+		, algo(algo)
+	{}
+	~Pixelsorter() {}
 
-    void sort_pixels(int w, int h, Span);
+	void sort_pixels(int w, int h, Span);
 };
 
