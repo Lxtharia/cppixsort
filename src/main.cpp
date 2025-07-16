@@ -10,13 +10,12 @@ using cimg_library::CImg;
 vector<Pixel> img_to_pixels(CImg<PIXEL_VALUE_TYPE>& image);
 
 int main (int argc, char *argv[]) {
-	std::cout << "Hello World!" << std::endl;
 
 	// Creating sorter
 	cmdline_args args = parse_arguments(argc, argv);
 
 	cout << "Opening image..." << endl;
-	CImg<PIXEL_VALUE_TYPE> image("res/pixeltest.png");
+	CImg<PIXEL_VALUE_TYPE> image(args.input_filename.c_str());
 
 	cout << "Extracting pixels..." << endl;
 	auto pixels = img_to_pixels(image);
@@ -31,7 +30,7 @@ int main (int argc, char *argv[]) {
 	cout << "Saving image..." << endl;
 
 	// Save it to sorted.png
-	image.save_imagemagick_external("sorted.png");
+	image.save_imagemagick_external(args.output_filename.c_str());
 
 	return 0;
 }
