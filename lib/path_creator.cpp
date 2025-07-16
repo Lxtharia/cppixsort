@@ -3,6 +3,7 @@
 
 
 vector<Span> LinePath::create_spans(int width, int height, Span& pixels) const {
+	cout << "Creating spans: LINE(" << this->direction << ")" << endl;
 	vector<Span> spans {};
 
 	// For every column, sort the row
@@ -16,7 +17,8 @@ vector<Span> LinePath::create_spans(int width, int height, Span& pixels) const {
 		secondary = width;
 		index_in_order = false;
 	} else {
-		cout << "For every column, sort the row" << endl;
+		// DEBUG
+		// cout << "For every column, sort the row" << endl;
 	}
 	if (this->direction == Direction::DOWN || this->direction == Direction::LEFT) {
 		reverse = !reverse;
@@ -32,9 +34,8 @@ vector<Span> LinePath::create_spans(int width, int height, Span& pixels) const {
 			            ? a * width + b
 			            : b * width + a;
 			span.push_back(pixels[index]);
-			cout << index << " | ";
+			// cout << index << " | ";
 		}
-		cout << endl;
 		spans.push_back(span);
 	}
 	return spans;

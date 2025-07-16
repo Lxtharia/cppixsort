@@ -10,16 +10,15 @@ class Pixelsorter {
 private:
 public:
 	bool inverse;
-	SortingAlgorithm algo;
-	PathCreator pathing;
+	SortingAlgorithm* algo;
+	PathCreator* pathing;
 
 	Pixelsorter()
 		:inverse(false)
-		,algo(SortingAlgorithm(SortingAlgorithm::Criteria::BRIGHTNESS))
-		,pathing(PathCreator())
-	{
-	}
-	Pixelsorter(PathCreator& pathing, SortingAlgorithm& algo, bool inverse = false)
+		,algo(new BubbleSort(SortingAlgorithm::Criteria::BRIGHTNESS))
+		,pathing(new LinePath(LinePath::Direction::DOWN))
+	{ }
+	Pixelsorter(PathCreator* pathing, SortingAlgorithm* algo, bool inverse = false)
 		:inverse(inverse)
 		,pathing(pathing)
 		,algo(algo)
