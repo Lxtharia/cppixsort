@@ -3,6 +3,7 @@
 #include "lib/sorting_algorithm.h"
 #include <argp.h>
 #include <cstdio>
+#include <memory>
 #include <stdexcept>
 
 static char doc[] =
@@ -20,6 +21,7 @@ static argp_option options[] = {
 	{"algo",	'a', "ALGO",		0, "Algorithm to use"},
 	{"path",	'p', "PATH",		0, "Direction/Path"},
 	{"dir",		'd', "DIRECTION", OPTION_ALIAS, ""},
+	{"criteria",'c', "CRITERIA",	0, "Which pixel value to sort by"},
 	{"reverse",	'r', 0,		0, "Invert the direction of the sort"},
 	{"Available paths: [up,left,down,right]", 0, 0, OPTION_DOC, ""},
 	{"Available algorithms: [bubble]", 0, 0, OPTION_DOC, ""},
@@ -47,11 +49,15 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
 		case 'r':
 			args->pixelsorter.inverse = true;
 			break;
+		case 'c':
+			if ARG_IS("brightness")
+				args->pixelsorter.sorting_criteria = make_unique<Brightness>();
+			break;
 		case 'a':
 			if ARG_IS("bubble")
-				args->pixelsorter.algo = make_unique<BubbleSort>(SortingAlgorithm::BRIGHTNESS);
+				args->pixelsorter.algo = make_unique<BubbleSort>();
 			else if (ARG_IS("map") or ARG_IS("mapsort"))
-				args->pixelsorter.algo = make_unique<MapSort>(SortingAlgorithm::BRIGHTNESS);
+				args->pixelsorter.algo = make_unique<MapSort>();
 			else {
 				cout << "Not a valid algorithm:" << arg << endl;
 				argp_usage(state);

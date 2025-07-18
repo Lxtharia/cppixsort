@@ -2,10 +2,11 @@
 #include <vector>
 #include <iostream>
 
-using PIXEL_VALUE_TYPE = unsigned int;
+using PIXEL_CHANNEL_TYPE = unsigned int;
+using PIXEL_VALUE_TYPE = int;
 
 class Pixel {
-	using T = PIXEL_VALUE_TYPE;
+	using T = PIXEL_CHANNEL_TYPE;
 public:
 	T& r;
 	T& g;

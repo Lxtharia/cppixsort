@@ -1,13 +1,14 @@
 #include <iostream>
 #include <vector>
 #include "cmdline.h"
+#include "lib/common.h"
 #include "lib/pixelsorter.h"
 #include <CImg.h>
 
 using namespace std;
 using cimg_library::CImg;
 
-vector<Pixel> img_to_pixels(CImg<PIXEL_VALUE_TYPE>& image);
+vector<Pixel> img_to_pixels(CImg<PIXEL_CHANNEL_TYPE>& image);
 
 int main (int argc, char *argv[]) {
 
@@ -15,7 +16,7 @@ int main (int argc, char *argv[]) {
 	cmdline_args args = parse_arguments(argc, argv);
 
 	cout << "Opening image..." << endl;
-	CImg<PIXEL_VALUE_TYPE> image(args.input_filename.c_str());
+	CImg<PIXEL_CHANNEL_TYPE> image(args.input_filename.c_str());
 
 	cout << "Extracting pixels..." << endl;
 	auto pixels = img_to_pixels(image);
@@ -38,8 +39,8 @@ int main (int argc, char *argv[]) {
 
 /*! Return the Pixels of the image as a vector. Changing the pixel values will manipulate the image.
 */
-vector<Pixel> img_to_pixels(CImg<PIXEL_VALUE_TYPE>& image) {
-	PIXEL_VALUE_TYPE* data = image.data();
+vector<Pixel> img_to_pixels(CImg<PIXEL_CHANNEL_TYPE>& image) {
+	PIXEL_CHANNEL_TYPE* data = image.data();
 	int size = image.size();
 	int depth = image.depth();
 	int spectrum = image.spectrum();
@@ -50,9 +51,9 @@ vector<Pixel> img_to_pixels(CImg<PIXEL_VALUE_TYPE>& image) {
 	// Size is w*h*dep*spec
 	int offset = size/(depth*spectrum);
 	for (int i = 0; i < offset; i++) {
-		PIXEL_VALUE_TYPE& r = data[i];
-		PIXEL_VALUE_TYPE& g = data[offset+i];
-		PIXEL_VALUE_TYPE& b = data[2*offset+i];
+		PIXEL_CHANNEL_TYPE& r = data[i];
+		PIXEL_CHANNEL_TYPE& g = data[offset+i];
+		PIXEL_CHANNEL_TYPE& b = data[2*offset+i];
 		vec.push_back(Pixel{ r,g,b });
 	}
 	return vec;
