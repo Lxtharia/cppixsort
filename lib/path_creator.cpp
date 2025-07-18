@@ -20,7 +20,7 @@ vector<Span> LinePath::create_spans(int width, int height, Span& pixels) const {
 		// DEBUG
 		// cout << "For every column, sort the row" << endl;
 	}
-	if (this->direction == Direction::DOWN || this->direction == Direction::LEFT) {
+	if (this->direction == Direction::DOWN || this->direction == Direction::RIGHT) {
 		reverse = !reverse;
 	}
 
