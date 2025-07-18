@@ -99,15 +99,10 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
 }
 
 
-cmdline_args parse_arguments(int argc, char* argv[]) {
-	cmdline_args args;
-
+void parse_arguments(int argc, char* argv[], cmdline_args& args) {
 	static argp argp { options, parse_opt, args_doc, doc };
 	static int FLAGS = 0;
 
 	if (argp_parse(&argp, argc, argv, FLAGS, 0, &args) != 0)
 		throw std::runtime_error("Failed to parse arguments.");
-
-
-	return args;
 }

@@ -3,7 +3,7 @@
 #include <vector>
 
 struct Criteria {
-	virtual PIXEL_CHANNEL_TYPE calculate_value(Pixel&) { return 200; };
+	virtual PIXEL_CHANNEL_TYPE calculate_value(Pixel&) = 0;
 	PIXEL_CHANNEL_TYPE operator()(Pixel& p) { return this->calculate_value(p); }
 };
 struct Brightness : public Criteria {

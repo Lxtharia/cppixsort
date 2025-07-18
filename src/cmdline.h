@@ -9,5 +9,5 @@ struct cmdline_args {
     int loglevel = 1;
 };
 
-cmdline_args parse_arguments(int argc, char **argv);
+void parse_arguments(int argc, char* argv[], cmdline_args& args);
 

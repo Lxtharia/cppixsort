@@ -2,7 +2,9 @@
 #include <vector>
 #include "cmdline.h"
 #include "lib/common.h"
+#include "lib/path_creator.h"
 #include "lib/pixelsorter.h"
+#include "lib/sorting_algorithm.h"
 #include <CImg.h>
 
 using namespace std;
@@ -11,9 +13,13 @@ using cimg_library::CImg;
 vector<Pixel> img_to_pixels(CImg<PIXEL_CHANNEL_TYPE>& image);
 
 int main (int argc, char *argv[]) {
+	// Create sorter manually
 
-	// Creating sorter
-	cmdline_args args = parse_arguments(argc, argv);
+	// Creating sorter with some defaults
+	cmdline_args args {};
+	args.pixelsorter = std::move( Pixelsorter { new LinePath(PathCreator::DOWN), new MapSort(), new Brightness, true});
+	parse_arguments(argc, argv, args);
+
 
 	cout << "Opening image..." << endl;
 	CImg<PIXEL_CHANNEL_TYPE> image(args.input_filename.c_str());
