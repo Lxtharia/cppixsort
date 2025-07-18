@@ -49,7 +49,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
 			break;
 		case 'a':
 			if ARG_IS("bubble") {
-				args->pixelsorter.algo = new BubbleSort(SortingAlgorithm::BRIGHTNESS);
+				args->pixelsorter.algo = make_unique<BubbleSort>(SortingAlgorithm::BRIGHTNESS);
 			} else {
 				cout << "Not a valid algorithm:" << arg << endl;
 				argp_usage(state);
@@ -57,13 +57,13 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
 			break;
 		case 'p': case 'd':
 			if ARG_IS("up")
-				args->pixelsorter.pathing = new LinePath(LinePath::Direction::UP);
+				args->pixelsorter.pathing = make_unique<LinePath>(LinePath::Direction::UP);
 			else if ARG_IS("down")
-				args->pixelsorter.pathing = new LinePath(LinePath::Direction::DOWN);
+				args->pixelsorter.pathing = make_unique<LinePath>(LinePath::Direction::DOWN);
 			else if ARG_IS("left")
-				args->pixelsorter.pathing = new LinePath(LinePath::Direction::LEFT);
+				args->pixelsorter.pathing = make_unique<LinePath>(LinePath::Direction::LEFT);
 			else if ARG_IS("right")
-				args->pixelsorter.pathing = new LinePath(LinePath::Direction::RIGHT);
+				args->pixelsorter.pathing = make_unique<LinePath>(LinePath::Direction::RIGHT);
 			else {
 				cout << "Not a valid direction: " << arg << endl;
 				argp_usage(state);
