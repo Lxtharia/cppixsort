@@ -15,6 +15,15 @@ public:
 	Pixel(T& r, T& g, T& b, int value = 0)
 		:r(r), g(g), b(b), value(value)
 	{}
+	Pixel& operator=(Pixel& p) {
+		this->r = p.r;
+		this->g = p.g;
+		this->b = p.b;
+		this->value = p.value;
+
+		return *this;
+	}
+
 	bool operator==(Pixel& p) {
 		return this->r == p.r
 			&& this->g == p.g

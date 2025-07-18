@@ -20,13 +20,20 @@ public:
 	virtual void sort_span(Span&) const {};
 };
 
+#define SUPER(classname) classname(Criteria criteria) : SortingAlgorithm(criteria) {}
+
 // BubbleSort inherits Algorithm
 // Make inheritence public so we can upcast to SortingAlgorithm
 class BubbleSort : public SortingAlgorithm {
 public:
-	BubbleSort(SortingAlgorithm::Criteria criteria)
-		: SortingAlgorithm(criteria) {}  // probably equivalent to calling super() in java
+	SUPER(BubbleSort)
 	// We explicitly override sort_span.
 	// Override makes the compiler warn us if we accidentally overload a function with the same name
+	virtual void sort_span(Span&) const override;
+};
+
+class MapSort : public SortingAlgorithm {
+public:
+	SUPER(MapSort)
 	virtual void sort_span(Span&) const override;
 };

@@ -48,9 +48,11 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
 			args->pixelsorter.inverse = true;
 			break;
 		case 'a':
-			if ARG_IS("bubble") {
+			if ARG_IS("bubble")
 				args->pixelsorter.algo = make_unique<BubbleSort>(SortingAlgorithm::BRIGHTNESS);
-			} else {
+			else if (ARG_IS("map") or ARG_IS("mapsort"))
+				args->pixelsorter.algo = make_unique<MapSort>(SortingAlgorithm::BRIGHTNESS);
+			else {
 				cout << "Not a valid algorithm:" << arg << endl;
 				argp_usage(state);
 			};
