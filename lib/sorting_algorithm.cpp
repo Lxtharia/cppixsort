@@ -17,8 +17,8 @@ void BubbleSort::sort_span(Span& pixels) const {
 }
 
 void MapSort::sort_span(Span& pixels) const {
-	int max_val = INT_MIN;
-	int min_val = INT_MAX;
+	PIXEL_VALUE_TYPE max_val = INT_MIN;
+	PIXEL_VALUE_TYPE min_val = INT_MAX;
 	for (auto& p: pixels) {
 		if (p.value > max_val)
 			max_val = p.value;
@@ -28,6 +28,7 @@ void MapSort::sort_span(Span& pixels) const {
 	int offset = -min_val;
 	vector<stack<Pixel>> boxes {};
 	// Create an empty stack for each value in the vector
+	cout << "MaxV: " << max_val << " " << offset << endl;
 	boxes.assign(max_val+offset+1, stack<Pixel>{});
 
 	for (auto& p: pixels) {

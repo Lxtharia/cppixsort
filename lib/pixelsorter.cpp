@@ -13,7 +13,9 @@ void Pixelsorter::sort_pixels(int width, int height, Span data) {
 		if (span.size() <= 1) continue;
 		// Calculating pixel values for quicker comparison
 		for (PixelMut& p : span) {
+			// cout << p << " _ ";
 			p.value = this->sorting_criteria->calculate_value(p);
+			// cout << p.value << " | ";
 		}
 		// std::cout << "Sorting span of length: "  << span.size() << std::endl;
 		this->algo->sort_span(span);

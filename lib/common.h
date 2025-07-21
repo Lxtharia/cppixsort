@@ -2,8 +2,8 @@
 #include <vector>
 #include <iostream>
 
-using PIXEL_CHANNEL_TYPE = unsigned int;
-using PIXEL_VALUE_TYPE = int;
+using PIXEL_CHANNEL_TYPE = unsigned short;
+using PIXEL_VALUE_TYPE = long int;
 
 struct PixelMut;
 
@@ -14,7 +14,7 @@ struct Pixel {
 	T b;
 	int value = 0;
 
-	Pixel(T& r, T& g, T& b, int value = 0)
+	Pixel(T r, T g, T b, int value = 0)
 		:r(r), g(g), b(b), value(value)
 	{}
 
@@ -25,6 +25,12 @@ struct Pixel {
 			;
 	};
 	PixelMut to_ref();
+
+	inline Pixel scale(int bitdepth) {
+		float scalar (float(0b1<<bitdepth) / float(0b1<<(8*sizeof(PIXEL_CHANNEL_TYPE))));
+		return Pixel{ PIXEL_CHANNEL_TYPE(r*scalar), PIXEL_CHANNEL_TYPE(g*scalar), PIXEL_CHANNEL_TYPE(b*scalar) };
+	}
+
 };
 
 /* Class that holds mutable references to pixeldata.
