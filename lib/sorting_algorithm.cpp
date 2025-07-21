@@ -27,21 +27,20 @@ void MapSort::sort_span(Span& pixels) const {
 	}
 	int offset = -min_val;
 	vector<stack<Pixel>> boxes {};
-	// Create vectors for each value
-	for (int i = 0; i <= max_val+offset; i++) {
-		boxes.push_back({});
-	}
+	// Create an empty stack for each value in the vector
+	boxes.assign(max_val+offset+1, stack<Pixel>{});
 
 	for (auto& p: pixels) {
 		int i = p.value;
-		boxes.at(i+offset).push(p);
+		boxes.at(i+offset).push(p.to_owned());
 	}
 
 	int i = 0;
-	for (auto& box: boxes) {
-		while (!box.empty()) {
-			pixels[i++] = box.top();
-			box.pop();
+	for (auto& st: boxes) {
+		while (!st.empty()) {
+			// cout << "From " << pixels[i] << " to " << st.top().to_ref() << endl;
+			pixels[i++] = st.top();
+			st.pop();
 		}
 	}
 
