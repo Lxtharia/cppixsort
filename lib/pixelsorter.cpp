@@ -12,7 +12,7 @@ void Pixelsorter::sort_pixels(int width, int height, Span data) {
 	for (Span span : spans) {
 		if (span.size() <= 1) continue;
 		// Calculating pixel values for quicker comparison
-		for (Pixel& p : span) {
+		for (PixelMut& p : span) {
 			p.value = this->sorting_criteria->calculate_value(p);
 		}
 		// std::cout << "Sorting span of length: "  << span.size() << std::endl;

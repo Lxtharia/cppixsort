@@ -1,13 +1,16 @@
 #pragma once
 #include "common.h"
-#include <vector>
 
 struct Criteria {
 	virtual PIXEL_CHANNEL_TYPE calculate_value(Pixel&) = 0;
+	virtual PIXEL_CHANNEL_TYPE calculate_value(PixelMut& pm) {
+		Pixel p = pm.to_owned();
+		return calculate_value(p);
+	};
 	PIXEL_CHANNEL_TYPE operator()(Pixel& p) { return this->calculate_value(p); }
 };
 struct Brightness : public Criteria {
-	PIXEL_CHANNEL_TYPE calculate_value(Pixel& p) {
+	PIXEL_CHANNEL_TYPE calculate_value(Pixel& p) override {
 		return p.r + p.g + p.b;
 	};
 };
