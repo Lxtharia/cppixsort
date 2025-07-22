@@ -39,25 +39,25 @@ struct PixelMut {
 	PixelMut(T& r, T& g, T& b, int value = 0)
 		:r(r), g(g), b(b), value(value)
 	{}
-	PixelMut& operator=(Pixel& p) {
+	PixelMut& operator=(const Pixel& p) {
 		this->r = p.r;
 		this->g = p.g;
 		this->b = p.b;
 		this->value = p.value;
 		return *this;
 	}
-	PixelMut& operator=(PixelMut& p) {
+	PixelMut& operator=(const PixelMut& p) {
 		this->r = p.r;
 		this->g = p.g;
 		this->b = p.b;
 		this->value = p.value;
 		return *this;
 	}
-	Pixel to_owned() {
+	Pixel to_owned() const {
 		return Pixel(r,g,b,value);
 	}
 
-	bool operator==(PixelMut& p) {
+	bool operator==(const PixelMut& p) {
 		return this->r == p.r
 			&& this->g == p.g
 			&& this->b == p.b
