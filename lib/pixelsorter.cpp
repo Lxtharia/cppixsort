@@ -15,7 +15,6 @@ void Pixelsorter::sort_pixels(int width, int height, Span data) {
 		for (PixelMut& p : span) {
 			p.value = this->sorting_criteria->calculate_value(p);
 		}
-		// std::cout << "Sorting span of length: "  << span.size() << std::endl;
 		this->algo->sort_span(span);
 	}
 

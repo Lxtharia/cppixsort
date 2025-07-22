@@ -1,8 +1,9 @@
 #pragma once
+#include <limits>
 #include <vector>
 #include <iostream>
 
-using PIXEL_CHANNEL_TYPE = unsigned char;
+using PIXEL_CHANNEL_TYPE = unsigned int;
 using PIXEL_VALUE_TYPE = int;
 
 struct PixelMut;
@@ -12,10 +13,10 @@ struct Pixel {
 	T r;
 	T g;
 	T b;
-	float a;
-	PIXEL_VALUE_TYPE value = 0;
+	T a = std::numeric_limits<T>::max();
+	PIXEL_VALUE_TYPE value;
 
-	Pixel(T& r, T& g, T& b, float& a, int value = 0)
+	Pixel(T& r, T& g, T& b, T& a, int value = 0)
 		:r(r), g(g), b(b), a(a), value(value)
 	{}
 
@@ -36,10 +37,10 @@ struct PixelMut {
 	T& r;
 	T& g;
 	T& b;
-	float& a;
+	T& a;
 	// Value to store for comparison
 	PIXEL_VALUE_TYPE value;
-	PixelMut(T& r, T& g, T& b, float& a, int value = 0)
+	PixelMut(T& r, T& g, T& b, T& a, int value = 0)
 		:r(r), g(g), b(b), a(a), value(value)
 	{}
 	PixelMut& operator=(const Pixel& p) {
