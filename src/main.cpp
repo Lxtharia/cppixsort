@@ -60,7 +60,14 @@ vector<PixelMut> img_to_pixels(CImg<PIXEL_CHANNEL_TYPE>& image) {
 		PIXEL_CHANNEL_TYPE& r = data[i];
 		PIXEL_CHANNEL_TYPE& g = data[offset+i];
 		PIXEL_CHANNEL_TYPE& b = data[2*offset+i];
-		vec.push_back(PixelMut{ r,g,b });
+		if (spectrum>=4) {
+			float a = data[3*offset+i];
+			printf("A: %f", a);
+			vec.push_back(PixelMut{ r,g,b,a });
+		} else {
+			static float a = 1;
+			vec.push_back(PixelMut{ r,g,b,a });
+		}
 	}
 	return vec;
 }
